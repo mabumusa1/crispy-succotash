@@ -20,7 +20,7 @@ return [
     | Filament Path
     |--------------------------------------------------------------------------
     |
-    | The default is `admin` but you can change it to whatever works best and
+    | The default is `admin` but you                                                            change it to whatever works best and
     | doesn't conflict with the routing in your application.
     |
     */
@@ -87,7 +87,7 @@ return [
     'auth' => [
         'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
         'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+            'login' => \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class,
         ],
     ],
 
