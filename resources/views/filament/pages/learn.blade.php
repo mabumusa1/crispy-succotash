@@ -1,41 +1,49 @@
 <x-filament::page>
-    <x-filament::card>
-        <h1 class="mt-4 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200 text-center">{{ __('Learn Mautic') }}</h1>
-        <p class="mt-4 mb-4 text-lg text-slate-700 dark:text-slate-400 text-center">{{ __('You are one step away from getting your Mautic installation running.') }}</p>
-        <hr/>
-        <p class="mt-4 mb-4 text-lg text-slate-700 dark:text-slate-400">{{ __('Before you can start, please make sure you agree on the following requirements:') }}</p>
-        <ul class="space-y-5 text-gray-500 list-inside dark:text-gray-400">
-            <li class="flex items-center text-lg text-slate-700 dark:text-slate-400">
-                @if(Auth::user()->hasVerifiedEmail())
-                    <svg class="w-5 h-5 mr-3 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                @else
-                    <svg class="w-5 h-5 mr-3 text-red-400 dark:text-red-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
-                @endif
-                {{ __('You must have your email verified') }}
-            </li>
-            <li class="flex items-center mt-5 mb-5 text-lg text-slate-700 dark:text-slate-400">
-                <svg class="w-5 h-5 mr-3 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                {{ __('This Mautic installation will be deleted after 7 days, do not worry you still can create a new one') }}
-            </li>
-            <li class="flex items-center mt-5 mb-5 text-lg text-slate-700 dark:text-slate-400">
-                <svg class="w-5 h-5 mr-3 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                {{ __('This Mautic installation will not send real Emails or SMS') }}
-            </li>
-            <li class="flex items-center mt-5 mb-5 text-lg text-slate-700 dark:text-slate-400">
-                <svg class="w-5 h-5 mr-3 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                {{ __('This Mautic installation will not hold more 100 leads for learning purposes') }}
-            </li>
-        </ul>
-        <hr/>
-        <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-            @if(Auth::user()->hasVerifiedEmail())
-                <button type="submit" class="disabled inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    {{ __('I agree, Create Mautic') }}
-                    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </button>
-            @else
-                <button type="button" class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>{{ __('I agree, Create Mautic') }}</button>
-            @endif
+    @if(Auth::user()->installs()->learn()->count() >= 1)
+    <div class="grid grid-cols-8 gap-3">
+        <div class="col-span-6 flex flex-col">
+            <?php $install = Auth::user()->installs()->learn()->first() ?>
+            <x-filament::card>
+                <p class="mb-3 text-md font-medium text-gray-500 dark:text-white">{{ __('Your installation is ready, please access it with the information below') }}</p>
+                <div class="flex flex-row">
+                    <div class="basis-1/4"><span class="mb-3 text-md font-medium text-gray-500 dark:text-white">{{ __('Login URL: ') }}</span></div>
+                    <div class="basis-3/4"><a class="text-blue-600 inline-block" href="https://{{ $install->name }}.steercampaign.com">https://{{ $install->name }}.steercampaign.com</a></div>
+                </div>
+                <div class="flex flex-row">
+                    <div class="basis-1/4"><span class="mb-3 text-md font-medium text-gray-500 dark:text-white">{{ __('Username: ') }}</span></div>
+                    <div class="basis-3/4"></div>
+                </div>
+                <div class="flex flex-row">
+                    <div class="basis-1/4"><span class="mb-3 text-md font-medium text-gray-500 dark:text-white">{{ __('Password: ') }}</span></div>
+                    <div class="basis-3/4"></div>
+                </div>
+
+                <div class="flex flex-row">
+                    <div class="basis-1/4"><span class="mb-3 text-md font-medium text-gray-500 dark:text-white">{{ __('Days until expire: ') }}</span></div>
+                    <div class="basis-3/4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-base font-medium text-blue-700 dark:text-white">{{ $install->daysUntilExpire }} Days</span>
+                            <span class="text-sm font-medium text-blue-700 dark:text-white">{{ $install->daysUntilExpireRatio }}%</span>
+                          </div>
+                          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $install->daysUntilExpireRatio }}%"></div>
+                          </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="flex flex-col items-center pb-10">
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ __('If you are not done learning, you can always renew your installation') }}</span>
+                    <div class="flex mt-4 space-x-3 md:mt-6">
+                        <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('Renew my install') }}</a>
+                    </div>
+                </div>
+            </x-filament::card>
         </div>
-    </x-filament::card>
+        <div class="col-span-2 flex flex-col">
+            @include('filament.pages.learn.learning_resources')
+        </div>
+    </div>
+    @else
+        @include('filament.pages.learn.initalScreen')
+    @endif
 </x-filament::page>

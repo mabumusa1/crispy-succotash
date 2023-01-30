@@ -9,6 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Install;
 
 class User extends Authenticatable implements FilamentUser, HasName,MustVerifyEmail
 {
@@ -63,6 +64,14 @@ class User extends Authenticatable implements FilamentUser, HasName,MustVerifyEm
     public function getFilamentName(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Get the Installs for the user.
+     */
+    public function Installs()
+    {
+        return $this->hasMany(Install::class);
     }
 
 }

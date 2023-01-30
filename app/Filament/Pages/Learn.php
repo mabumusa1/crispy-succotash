@@ -3,6 +3,8 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
+use Filament\Pages\Actions\CreateAction;
+
 
 class Learn extends Page
 {
@@ -17,7 +19,4 @@ class Learn extends Page
     protected static string $view = 'filament.pages.learn';
 
     protected static ?string $slug = 'learn';
-
-
-
 }
