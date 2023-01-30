@@ -4,7 +4,7 @@
         <p class="mt-4 text-lg text-slate-700 dark:text-slate-400 text-center">{{ __('Choose the area you want to work in and we\'ll help you get started.') }}</p>
         <div class="grid grid-cols-3 hover:grid-cols-3 text-center justify-center">
             <div class="rounded-lg shadow-lg hover:bg-gray-100 p-4">
-                <a href="learn">
+                <a href="{{ route('filament.pages.learn') }}">
                     <svg class="h-20 w-20 flex-no-shrink fill-current mb-6 mx-auto"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     viewBox="0 0 392.792 392.792" xml:space="preserve">
                <path style="fill:#FFFFFF;" d="M21.851,269.244h181.592c-2.069-6.723-3.232-13.899-3.232-21.398
@@ -46,7 +46,7 @@
                        s-72.016,32.388-72.016,72.081c0,7.434,1.164,14.61,3.232,21.398H21.851V21.907h348.962L370.812,269.244L370.812,269.244z"/>
                </g>
                </svg>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __('Test or Learn') }}</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __('Learn') }}</h5>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {{ __('I want to test Mautic and find out its capabilities.') }}
                 </p>
@@ -54,7 +54,7 @@
             </div>
             <div class="rounded-lg shadow-lg">
                 <div class="rounded-lg shadow-lg hover:bg-gray-100 p-4">
-                    <a href="demo">
+                    <a href="{{ route('filament.pages.demo') }}">
                         <svg class="h-20 w-20 flex-no-shrink fill-current mb-6 mx-auto" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 392.663 392.663" xml:space="preserve">
                    <g>
@@ -103,7 +103,7 @@
             </div>
             <div class="rounded-lg shadow-lg">
                 <div class="rounded-lg shadow-lg hover:bg-gray-100 p-4">
-                    <a href="demo">
+                    <a href="{{ route('filament.pages.buy') }}">
                         <svg class="h-20 w-20 flex-no-shrink fill-current mb-6 mx-auto" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 392.514 392.514" xml:space="preserve">
                    <rect x="65.797" y="47.021" style="fill:#FFFFFF;" width="260.784" height="206.222"/>
