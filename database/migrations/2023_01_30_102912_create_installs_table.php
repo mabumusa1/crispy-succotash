@@ -18,15 +18,15 @@ return new class extends Migration
             $table->unsignedBigInteger('data_center_id');
             $table->unsignedBigInteger('user_id');
             $table->string('name')->unique();
-            //One of four types ['learn', 'demo', 'dev', 'prod']
-            $table->string('type');
-            $table->boolean('locked')->default(false);
-            //One of three types ['creating', 'up', 'down']
-            $table->string('status')->default('creating');
+            $table->enum('type', ['course', 'demo', 'dev', 'prod']);
+            //$table->boolean('locked')->default(false);
+            //$table->enum('status', ['creating', 'up', 'down'])->default('creating');
+            $table->json('properties');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('data_center_id')->references('id')->on('data_centers');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->index(['id', 'type']);
         });
     }
 

@@ -9,7 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Install;
+
 
 class User extends Authenticatable implements FilamentUser, HasName,MustVerifyEmail
 {
@@ -67,11 +67,35 @@ class User extends Authenticatable implements FilamentUser, HasName,MustVerifyEm
     }
 
     /**
-     * Get the Installs for the user.
+     * Get the Prods for the user.
      */
-    public function Installs()
+    public function Prods()
     {
-        return $this->hasMany(Install::class);
+        return $this->hasMany(App\Models\Prod::class);
     }
 
+    /**
+     * Get the Devs for the user.
+     */
+    public function Devs()
+    {
+        return $this->hasMany(App\Models\Dev::class);
+    }
+
+    /**
+     * Get the Demos for the user.
+     */
+    public function Demos()
+    {
+        return $this->hasMany(App\Models\Demo::class);
+    }
+
+
+    /**
+     * Get the Course for the user.
+     */
+    public function Course()
+    {
+        return $this->hasOne(App\Models\Dev::class);
+    }
 }
